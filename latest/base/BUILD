@@ -12,6 +12,6 @@ cc_test(
     srcs = ["string_test.cc"],
     deps = [
         ":string",
-        "@gtest//:gtest_main",
+        "@com_google_googletest//:gtest_main",
     ],
 )

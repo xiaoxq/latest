@@ -4,6 +4,7 @@ Latest all-in-one infra code base. Current stack:
 
 - Ubuntu 18.04
 - Bazel 1.0
+- C++ 17
 - Abseil 20190808
 
 ## Prerequisites

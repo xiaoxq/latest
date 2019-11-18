@@ -37,7 +37,7 @@ std::string Base64Piece(const char in0, const char in1, const char in2) {
 
 }  // namespace
 
-std::string DecodeBase64(absl::string_view base64_str) {
+std::string DecodeBase64(std::string_view base64_str) {
   static const std::vector<int> kBase64CodeTable = Base64CodeTable();
 
   std::string bytes;
@@ -60,7 +60,7 @@ std::string DecodeBase64(absl::string_view base64_str) {
   return bytes;
 }
 
-std::string EncodeBase64(absl::string_view str) {
+std::string EncodeBase64(std::string_view str) {
   std::string out;
   if (str.empty()) {
     return out;
