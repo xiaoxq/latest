@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package latest.base;
+
+message Simple {
+  int32 int_field = 1;
+  string string_field = 2;
+}

@@ -1,6 +1,8 @@
 #include "latest/base/string.h"
 
+#include "absl/strings/str_join.h"
 #include "gtest/gtest.h"
+#include "latest/base/test/simple.pb.h"
 
 namespace latest {
 namespace base {
@@ -23,6 +25,14 @@ TEST(StringTest, EncodeBase64) {
   EXPECT_EQ("Zm9vYg==", EncodeBase64("foob"));
   EXPECT_EQ("Zm9vYmE=", EncodeBase64("fooba"));
   EXPECT_EQ("Zm9vYmFy", EncodeBase64("foobar"));
+}
+
+TEST(StringTest, ProtoFormatter) {
+  std::vector<Simple> messages(2);
+  messages[0].set_int_field(5);
+  messages[1].set_string_field("test");
+  EXPECT_EQ("int_field: 5\n;string_field: \"test\"\n",
+            absl::StrJoin(messages, ";", ProtoFormatter()));
 }
 
 }  // namespace base
