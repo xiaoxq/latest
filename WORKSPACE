@@ -3,35 +3,23 @@ workspace(name = "latest")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-git_repository(
-  name = "com_google_absl",
-  remote = "https://github.com/abseil/abseil-cpp",
-  tag = "20190808",
-)
-
-git_repository(
-  name = "com_google_googletest",
-  remote = "https://github.com/google/googletest",
-  tag = "release-1.10.0",
-)
-
-git_repository(
-  name = "com_google_protobuf",
-  remote = "https://github.com/protocolbuffers/protobuf",
-  tag = "v3.10.1",
-)
-
+# Common rules with bazel_federation:
+# https://github.com/bazelbuild/bazel-federation
 http_archive(
-  name = "github_nlohmann_json",
-  url = "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
-  build_file_content = """
-cc_library(
-    name = "json",
-    hdrs = ["single_include/nlohmann/json.hpp"],
-    includes = ["single_include"],
-    visibility = ["//visibility:public"],
-)""",
+    name = "bazel_federation",
+    url = "https://github.com/bazelbuild/bazel-federation/archive/130c84ec6d60f31b711400e8445a8d0d4a2b5de8.zip",
+    sha256 = "9d4fdf7cc533af0b50f7dd8e58bea85df3b4454b7ae00056d7090eb98e3515cc",
+    strip_prefix = "bazel-federation-130c84ec6d60f31b711400e8445a8d0d4a2b5de8",
+    type = "zip",
 )
+load("@bazel_federation//:repositories.bzl", "rules_cc", "rules_python")
+rules_cc()
+load("@bazel_federation//setup:rules_cc.bzl", "rules_cc_setup")
+rules_cc_setup()
+
+rules_python()
+load("@bazel_federation//setup:rules_python.bzl", "rules_python_setup")
+rules_python_setup()
 
 # Proto rules: https://github.com/bazelbuild/rules_proto
 http_archive(
@@ -47,9 +35,27 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_
 rules_proto_dependencies()
 rules_proto_toolchains()
 
-# Python rules.
+# Third party libs.
+git_repository(
+  name = "com_google_absl",
+  remote = "https://github.com/abseil/abseil-cpp",
+  tag = "20190808",
+)
+
+git_repository(
+  name = "com_google_googletest",
+  remote = "https://github.com/google/googletest",
+  tag = "release-1.10.0",
+)
+
 http_archive(
-    name = "rules_python",
-    url = "https://github.com/bazelbuild/rules_python/releases/download/0.0.1/rules_python-0.0.1.tar.gz",
-    sha256 = "aa96a691d3a8177f3215b14b0edc9641787abaaa30363a080165d06ab65e1161",
+  name = "github_nlohmann_json",
+  url = "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
+  build_file_content = """
+cc_library(
+    name = "json",
+    hdrs = ["single_include/nlohmann/json.hpp"],
+    includes = ["single_include"],
+    visibility = ["//visibility:public"],
+)""",
 )
