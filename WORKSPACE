@@ -21,6 +21,18 @@ git_repository(
   tag = "v3.10.1",
 )
 
+http_archive(
+  name = "github_nlohmann_json",
+  url = "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
+  build_file_content = """
+cc_library(
+    name = "json",
+    hdrs = ["single_include/nlohmann/json.hpp"],
+    includes = ["single_include"],
+    visibility = ["//visibility:public"],
+)""",
+)
+
 # Proto rules: https://github.com/bazelbuild/rules_proto
 http_archive(
     name = "rules_proto",

@@ -2,7 +2,7 @@
 
 #include "absl/strings/str_join.h"
 #include "gtest/gtest.h"
-#include "latest/base/test/simple.pb.h"
+#include "latest/base/simple_test.pb.h"
 
 namespace latest {
 namespace base {
@@ -28,7 +28,7 @@ TEST(StringTest, EncodeBase64) {
 }
 
 TEST(StringTest, ProtoFormatter) {
-  std::vector<Simple> messages(2);
+  std::vector<SimpleTest> messages(2);
   messages[0].set_int_field(5);
   messages[1].set_string_field("test");
   EXPECT_EQ("int_field: 5\n;string_field: \"test\"\n",

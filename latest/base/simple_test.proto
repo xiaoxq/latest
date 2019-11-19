@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package latest.base;
 
-message Simple {
+message SimpleTest {
   int32 int_field = 1;
   string string_field = 2;
 }
