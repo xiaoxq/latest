@@ -48,6 +48,20 @@ git_repository(
   tag = "release-1.10.0",
 )
 
+# Note that gflags is only for compiling glog. For your applications please use
+# Abseil FLAGS: https://abseil.io/docs/python/guides/flags
+git_repository(
+  name = "com_github_gflags_gflags",
+  remote = "https://github.com/gflags/gflags",
+  tag = "v2.2.2",
+)
+
+git_repository(
+  name = "com_google_glog",
+  remote = "https://github.com/google/glog",
+  tag = "v0.4.0",
+)
+
 http_archive(
   name = "github_nlohmann_json",
   url = "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
