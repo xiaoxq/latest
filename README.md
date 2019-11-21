@@ -14,22 +14,27 @@ Latest all-in-one infra code base. Current stack:
 
 ## Prerequisites
 
-### Without Docker
-
 1. Install [bazel](https://bazel.build).
+1. Install [conda](https://conda.io).
+1. `conda env update -f conda/env.yaml -p conda/env --prune`
 
-### With Docker
+   The trick is, we leverage conda to download some pre-compiled libraries and
+   wrap them into the WORKSPACE. So you always need to install the conda env
+   even though you only play with C++.
 
-1. Install [Docker CE 19.03+](https://docs.docker.com/install).
-1. Install [Nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker),
-   if you need to use GPU.
-1. [Build image](docker/build.sh).
-1. [Run container](docker/start.sh).
-1. [Login to a running container](docker/login.sh).
+## Play with C++
 
-## Play
-
-```
+```bash
 bazel build //...
 bazel test //...
 ```
+
+## Play with Python
+
+```bash
+conda activate latest
+python latest/<path>/<to>/<your>.py
+```
+
+We don't use Bazel to manage Python, instead, just conda and fixed package path
+which makes it simple.
