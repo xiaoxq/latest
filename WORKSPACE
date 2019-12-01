@@ -1,7 +1,7 @@
 workspace(name = "latest")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository", "new_git_repository")
 
 # Common rules with bazel_federation:
 # https://github.com/bazelbuild/bazel-federation
@@ -60,6 +60,25 @@ git_repository(
   name = "com_google_glog",
   remote = "https://github.com/google/glog",
   tag = "v0.4.0",
+)
+
+new_git_repository(
+  name = "curlpp",
+  remote = "https://github.com/jpbarrette/curlpp",
+  tag = "v0.8.1",
+  build_file_content = """
+cc_library(
+    name = "curlpp",
+    srcs = glob(["src/curlpp/**/*.cpp"]),
+    hdrs = glob([
+      "include/curlpp/**/*.hpp",
+      "include/curlpp/**/*.inl",
+    ]),
+    includes = [
+        "include",
+    ],
+    visibility = ["//visibility:public"],
+)""",
 )
 
 http_archive(

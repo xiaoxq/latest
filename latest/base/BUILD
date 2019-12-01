@@ -20,6 +20,17 @@ cc_test(
     ],
 )
 
+cc_library(
+    name = "http_client",
+    srcs = ["http_client.cc"],
+    hdrs = ["http_client.h"],
+    deps = [
+        "@com_google_glog//:glog",
+        "@curlpp//:curlpp",
+        "@github_nlohmann_json//:json",
+    ],
+)
+
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 
