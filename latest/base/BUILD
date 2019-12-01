@@ -25,9 +25,9 @@ cc_library(
     srcs = ["http_client.cc"],
     hdrs = ["http_client.h"],
     deps = [
+        "@com_github_jpbarrette_curlpp",
         "@com_google_glog//:glog",
-        "@curlpp//:curlpp",
-        "@github_nlohmann_json//:json",
+        "@github_nlohmann_json",
     ],
 )
 

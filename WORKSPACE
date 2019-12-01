@@ -63,20 +63,18 @@ git_repository(
 )
 
 new_git_repository(
-  name = "curlpp",
+  name = "com_github_jpbarrette_curlpp",
   remote = "https://github.com/jpbarrette/curlpp",
   tag = "v0.8.1",
   build_file_content = """
 cc_library(
-    name = "curlpp",
+    name = "com_github_jpbarrette_curlpp",
     srcs = glob(["src/curlpp/**/*.cpp"]),
     hdrs = glob([
       "include/curlpp/**/*.hpp",
       "include/curlpp/**/*.inl",
     ]),
-    includes = [
-        "include",
-    ],
+    includes = ["include"],
     visibility = ["//visibility:public"],
 )""",
 )
@@ -86,7 +84,7 @@ http_archive(
   url = "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
   build_file_content = """
 cc_library(
-    name = "json",
+    name = "github_nlohmann_json",
     hdrs = ["single_include/nlohmann/json.hpp"],
     includes = ["single_include"],
     visibility = ["//visibility:public"],
