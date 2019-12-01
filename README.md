@@ -12,6 +12,10 @@ Latest all-in-one infra code base. Current stack:
 - Glog 0.4
   - Gflags 2.2.2 (It's required by glog. For your app please use Abseil FLAGS.)
 - Boost 1.67
+- curlpp 0.8.1
+
+I try to keep everything up-to-date. Please create an issue if you find newer
+stable versions.
 
 ## Prerequisites
 
