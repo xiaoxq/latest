@@ -23,16 +23,16 @@ std::vector<int> Base64CodeTable() {
 
 std::string Base64Piece(const char in0, const char in1, const char in2) {
   const int triplet = in0 << 16 | in1 << 8 | in2;
-  std::string result(4, '=');
-  result[0] = kBase64Array[(triplet >> 18) & 0x3f];
-  result[1] = kBase64Array[(triplet >> 12) & 0x3f];
+  std::string out(4, '=');
+  out[0] = kBase64Array[(triplet >> 18) & 0x3f];
+  out[1] = kBase64Array[(triplet >> 12) & 0x3f];
   if (in1) {
-    result[2] = kBase64Array[(triplet >> 6) & 0x3f];
+    out[2] = kBase64Array[(triplet >> 6) & 0x3f];
   }
   if (in2) {
-    result[3] = kBase64Array[triplet & 0x3f];
+    out[3] = kBase64Array[triplet & 0x3f];
   }
-  return result;
+  return out;
 }
 
 }  // namespace
@@ -60,22 +60,22 @@ std::string DecodeBase64(std::string_view base64_str) {
   return bytes;
 }
 
-std::string EncodeBase64(std::string_view str) {
+std::string EncodeBase64(std::string_view in) {
   std::string out;
-  if (str.empty()) {
+  if (in.empty()) {
     return out;
   }
 
-  const size_t in_size = str.length();
+  const size_t in_size = in.length();
   out.reserve(((in_size - 1) / 3 + 1) * 4);
   for (size_t i = 0; i + 2 < in_size; i += 3) {
-    absl::StrAppend(&out, Base64Piece(str[i], str[i + 1], str[i + 2]));
+    absl::StrAppend(&out, Base64Piece(in[i], in[i + 1], in[i + 2]));
   }
   if (in_size % 3 == 1) {
-    absl::StrAppend(&out, Base64Piece(str[in_size - 1], 0, 0));
+    absl::StrAppend(&out, Base64Piece(in[in_size - 1], 0, 0));
   }
   if (in_size % 3 == 2) {
-    absl::StrAppend(&out, Base64Piece(str[in_size - 2], str[in_size - 1], 0));
+    absl::StrAppend(&out, Base64Piece(in[in_size - 2], in[in_size - 1], 0));
   }
   return out;
 }
