@@ -62,19 +62,17 @@ git_repository(
   tag = "v0.4.0",
 )
 
-new_git_repository(
-  name = "com_github_jpbarrette_curlpp",
-  remote = "https://github.com/jpbarrette/curlpp",
-  tag = "v0.8.1",
+new_local_repository(
+  name = "curlpp",
+  path = "/usr/include",
   build_file_content = """
 cc_library(
-    name = "com_github_jpbarrette_curlpp",
-    srcs = glob(["src/curlpp/**/*.cpp"]),
+    name = "curlpp",
     hdrs = glob([
-      "include/curlpp/**/*.hpp",
-      "include/curlpp/**/*.inl",
+      "curlpp/**/*.hpp",
+      "curlpp/**/*.inl",
     ]),
-    includes = ["include"],
+    linkopts = ["-lcurlpp"],
     visibility = ["//visibility:public"],
 )""",
 )

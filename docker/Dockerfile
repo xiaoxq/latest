@@ -11,6 +11,9 @@ RUN adduser --disabled-password --force-badname --gecos '' "aaron" && \
 COPY installers/install_bazel.sh /tmp/
 RUN bash /tmp/install_bazel.sh
 
+# Required libs.
+RUN apt install -y libcurl4-openssl-dev libcurlpp-dev
+
 USER aaron
 COPY installers/install_conda.sh /tmp/
 RUN bash /tmp/install_conda.sh
