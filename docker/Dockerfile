@@ -1,7 +1,7 @@
 FROM nvidia/cuda:10.2-runtime-ubuntu18.04
 
 # Install basic tools.
-RUN apt update && apt install -y git sudo wget
+RUN apt update && apt install -y cmake git sudo wget
 
 # Add solo user.
 RUN adduser --disabled-password --force-badname --gecos '' "aaron" && \
@@ -11,8 +11,8 @@ RUN adduser --disabled-password --force-badname --gecos '' "aaron" && \
 COPY installers/install_bazel.sh /tmp/
 RUN bash /tmp/install_bazel.sh
 
-# Required libs.
-RUN apt install -y libcurl4-openssl-dev libcurlpp-dev
+# Required lib for compiling curlpp.
+RUN apt install -y libcurl4-openssl-dev
 
 USER aaron
 WORKDIR /latest
