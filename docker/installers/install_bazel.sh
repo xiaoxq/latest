@@ -4,7 +4,7 @@ pushd $( dirname "${BASH_SOURCE[0]}" )
 set -e
 
 # https://docs.bazel.build/versions/master/install-ubuntu.html
-VERSION="1.2.1"
+VERSION="2.0.0"
 INSTALLER="bazel-${VERSION}-installer-linux-x86_64.sh"
 
 apt install -y pkg-config zip g++ zlib1g-dev unzip python3

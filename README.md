@@ -3,14 +3,15 @@
 Latest all-in-one infra code base. Current stack:
 
 - Ubuntu 18.04
-- Bazel 1.1
+- Bazel 2.0
 - C++ 17
-- Abseil 20190808
-- Gtest 1.10
+- abseil 20190808
+- gtest 1.10
   - Protobuf 3.9
 - Nlohmann Json 3.7.3
-- Glog 0.4
-  - Gflags 2.2.2 (It's required by glog. For your app please use Abseil FLAGS.)
+- glog 0.4
+  - gflags 2.2.2 (It's required by glog. For your app please use
+    [Abseil FLAGS](https://abseil.io/docs/python/guides/flags).)
 - Boost 1.68
 - curlpp 0.8.1
 
@@ -19,7 +20,12 @@ stable versions.
 
 ## Prerequisites
 
-1. Install [bazel](https://bazel.build).
+1. Install [Bazel](https://bazel.build). If you are using the same version of
+   Ubuntu, you can try the script:
+
+   ```
+   sudo bash docker/installers/install_bazel.sh
+   ```
 
 ## Play with C++
 
