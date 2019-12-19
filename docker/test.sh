@@ -10,7 +10,6 @@ fi
 docker exec -it "${CONTAINER}" bash -c -- "
   source /home/aaron/.bashrc
   set -x
-  conda env update -f conda/env.yaml -p conda/env --prune
   bazel build //...
   bazel test //...
 "

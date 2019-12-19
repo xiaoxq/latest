@@ -35,6 +35,16 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_
 rules_proto_dependencies()
 rules_proto_toolchains()
 
+# Boost rules.
+git_repository(
+    name = "com_github_nelhage_rules_boost",
+    commit = "9f9fb8b2f0213989247c9d5c0e814a8451d18d7f",
+    remote = "https://github.com/nelhage/rules_boost",
+    shallow_since = "1570056263 -0700",
+)
+load("@com_github_nelhage_rules_boost//:boost/boost.bzl", "boost_deps")
+boost_deps()
+
 # Third party libs.
 git_repository(
   name = "com_google_absl",
@@ -62,29 +72,16 @@ git_repository(
   tag = "v0.4.0",
 )
 
-new_local_repository(
-  name = "curlpp",
-  path = "/usr/include",
-  build_file_content = """
-cc_library(
-    name = "curlpp",
-    hdrs = glob([
-      "curlpp/**/*.hpp",
-      "curlpp/**/*.inl",
-    ]),
-    linkopts = ["-lcurlpp"],
-    visibility = ["//visibility:public"],
-)""",
+new_git_repository(
+  name = "com_github_jpbarrette_curlpp",
+  remote = "https://github.com/jpbarrette/curlpp",
+  tag = "v0.8.1",
+  build_file = "com_github_jpbarrette_curlpp.BUILD",
 )
 
-http_archive(
-  name = "github_nlohmann_json",
-  url = "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
-  build_file_content = """
-cc_library(
-    name = "github_nlohmann_json",
-    hdrs = ["single_include/nlohmann/json.hpp"],
-    includes = ["single_include"],
-    visibility = ["//visibility:public"],
-)""",
+new_git_repository(
+  name = "com_github_nlohmann_json",
+  remote = "https://github.com/nlohmann/json",
+  tag = "v3.7.3",
+  build_file = "com_github_nlohmann_json.BUILD",
 )
