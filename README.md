@@ -15,6 +15,7 @@ Latest all-in-one infra code base. Current stack:
 - Boost 1.68
 - curlpp 0.8.1
 - Poco 1.9.4
+- Tinyxml 7.1
 
 I try to keep everything up-to-date. Please create an issue if you find newer
 stable versions.

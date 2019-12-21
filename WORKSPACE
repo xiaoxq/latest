@@ -92,3 +92,10 @@ new_git_repository(
   tag = "poco-1.9.4-release",
   build_file = "com_github_pocoproject_poco.BUILD",
 )
+
+new_git_repository(
+  name = "com_github_leethomason_tinyxml2",
+  remote = "https://github.com/leethomason/tinyxml2",
+  tag = "7.1.0",
+  build_file = "com_github_leethomason_tinyxml2.BUILD",
+)
