@@ -85,3 +85,10 @@ new_git_repository(
   tag = "v3.7.3",
   build_file = "com_github_nlohmann_json.BUILD",
 )
+
+new_git_repository(
+  name = "com_github_pocoproject_poco",
+  remote = "https://github.com/pocoproject/poco",
+  tag = "poco-1.9.4-release",
+  build_file = "com_github_pocoproject_poco.BUILD",
+)

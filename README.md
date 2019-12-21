@@ -14,6 +14,7 @@ Latest all-in-one infra code base. Current stack:
     [Abseil FLAGS](https://abseil.io/docs/python/guides/flags).)
 - Boost 1.68
 - curlpp 0.8.1
+- Poco 1.9.4
 
 I try to keep everything up-to-date. Please create an issue if you find newer
 stable versions.
